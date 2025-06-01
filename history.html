@@ -1,52 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Serenity Now – Archives</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Serenity Now – Archives</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="container">
+  <div class="container">
     <h1>Past Entries</h1>
     <ul id="history-list"></ul>
-    <button onclick="exportAll()">Export All as PDF</button>
+    <button onclick="exportAll()">Export All as TXT</button>
     <a href="index.html" class="history-link">Back to Inventory</a>
-</div>
-<script>
-function loadHistory() {
-    const historyList = document.getElementById("history-list");
-    historyList.innerHTML = "";
-    Object.keys(localStorage).sort().forEach(key => {
-        const li = document.createElement("li");
-        li.innerText = key;
-        li.onclick = () => {
-            const entry = JSON.parse(localStorage.getItem(key));
-            alert(entry.answers.map((a, i) => (i+1) + '. ' + a).join('\n\n'));
-        };
-        historyList.appendChild(li);
-    });
-}
+  </div>
 
-function exportAll() {
-    let content = "";
-    const questions = [...Array(35).keys()].map(i => (i+1) + ".");
-    Object.keys(localStorage).sort().forEach(date => {
-        const entry = JSON.parse(localStorage.getItem(date));
-        content += `Date: ${date}\n\n`;
-        entry.answers.forEach((a, i) => {
-            content += `${questions[i]}\n${a}\n\n`;
-        });
-        content += "---------------------------------------\n\n";
-    });
-    const blob = new Blob([content], { type: "application/pdf" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "All_Daily_Inventory_Entries.txt";
-    a.click();
-    URL.revokeObjectURL(a.href);
-}
+  <script>
+    const questions = [
+      "Have I reaffirmed my faith in a loving, caring God today?",
+      "Have I sought out the guidance of my Higher Power today? How?",
+      "What have I done to be of service to God and the people around me?",
+      "Has God given me anything to be grateful for today?",
+      "Do I believe that my Higher Power can show me how to live and better align myself with the will of that power?",
+      "Do I see any 'old patterns' in my life today? If so, which ones?",
+      "Have I been resentful, selfish, dishonest, or afraid?",
+      "Have I set myself up for disappointment?",
+      "Have I been kind and loving toward all?",
+      "Have I been worrying about yesterday or tomorrow?",
+      "Did I allow myself to become obsessed about anything?",
+      "Have I allowed myself to become too hungry, angry, lonely, or tired?",
+      "Am I taking myself too seriously in any area of my life?",
+      "Do I suffer from any physical, mental, or spiritual problems?",
+      "Have I kept something to myself that I should have discussed with my sponsor?",
+      "Did I have any extreme feelings today? What were they and why did I have them?",
+      "What are the problem areas in my life today?",
+      "Which defects played a part in my life today? How?",
+      "Was there fear in my life today?",
+      "What did I do today that I wish I hadn't done?",
+      "What didn't I do today that I wish I had done?",
+      "Am I willing to change?",
+      "Has there been conflict in any of my relationships today? What?",
+      "Am I maintaining personal integrity in my relations with others?",
+      "Have I harmed myself or others, either directly or indirectly, today? How?",
+      "Do I owe any apologies or amends?",
+      "Where was I wrong? If I could do it over again, what would I do differently? How might I do better next time?",
+      "Did I stay clean today?",
+      "What were the feelings I had today? How did I use them to choose principle-centered action?",
+      "What did I do to be of service to others today?",
+      "What have I done today about which I feel positive?",
+      "What has given me satisfaction today?",
+      "What did I do today that I want to be sure I repeat?",
+      "Did I go to a meeting or talk to another recovering addict today?",
+      "What do I have to be grateful for today?"
+    ];
 
-loadHistory();
-</script>
+    function loadHistory() {
+      const list = document.getElementById("history-list");
+      list.innerHTML = "";
+      
+    const keys = Object.keys(localStorage)
+        .filter(k => /^\d{4}-\d{2}-\d{2}(?:_\d+)?$/.test(k))
+        .sort((a, b) => a.localeCompare(b));
+    
+      keys.forEach((key) => {
+        try {
+          const entry = JSON.parse(localStorage.getItem(key));
+          if (entry.answers && Array.isArray(entry.answers)) {
+            const li = document.createElement("li");
+            li.textContent = key;
+            
+    li.onclick = () => {
+      const win = window.open("", "_blank");
+      if (win) {
+        win.document.write("<html><head><title>Inventory Entry - " + key + "</title>");
+        win.document.write("<style>body{font-family:sans-serif;padding:1em;} h1{font-size:1.2em;} pre{white-space:pre-wrap;}</style></head><body>");
+        win.document.write("<h1>Inventory Entry – " + key + "</h1><pre>" + formatEntry(key, entry) + "</pre>");
+        win.document.write("</body></html>");
+        win.document.close();
+      }
+    };
+    
+            list.appendChild(li);
+          }
+        } catch (e) {}
+      });
+    }
+
+    function formatEntry(date, entry) {
+      let text = `Date: ${date}\n\n`;
+      entry.answers.forEach((ans, i) => {
+        text += (i + 1) + ". " + questions[i] + "\n";
+        text += "Answer: " + ans + "\n\n";
+      });
+      text += "------------------------------------------\n";
+      return text;
+    }
+
+    function exportAll() {
+      
+    const keys = Object.keys(localStorage)
+        .filter(k => /^\d{4}-\d{2}-\d{2}(?:_\d+)?$/.test(k))
+        .sort((a, b) => a.localeCompare(b));
+    
+      let content = "";
+      keys.forEach((key) => {
+        try {
+          const entry = JSON.parse(localStorage.getItem(key));
+          if (entry.answers && Array.isArray(entry.answers)) {
+            content += formatEntry(key, entry) + "\n";
+          }
+        } catch (e) {}
+      });
+
+      const blob = new Blob([content], { type: "text/plain" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "SerenityNow_Inventory_Export.txt";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    window.onload = loadHistory;
+  </script>
 </body>
 </html>

@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <title>Serenity Now</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Serenity Now – Daily Inventory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="apple-touch-icon" href="favicon.png" />
 </head>
 <body>
-<div class="container">
+  <div class="container">
+    <img src="serenity_bird_white_transparent.png" alt="Serenity Logo" class="logo" />
+    <h1>Daily Inventory</h1>
+    <div class="question-box">
+      <p id="question-text"></p>
+      <textarea id="answer" placeholder="Your response..."></textarea>
+      <div class="progress-bar"><div id="progress"></div></div>
+      <button id="next">Next</button>
+      <button id="submit" style="display:none;">Submit</button>
     
-<img src='serenity_bird_white_transparent.png' alt='Serenity Now Logo' class='logo'>
-    <div id="progress-bar" class="progress-bar">Progress: 0/35</div>
-    <p id="question-text"></p>
-    <textarea id="answer" placeholder="Enter your answer..."></textarea>
-    <button id="next-btn">Next</button>
-    <button id="submit-btn" style="display:none;">Submit</button><a href='history.html' class='history-link'>View Past Entries</a>
+    </div>
+    <div class="recovery-links">
+      <h2>Recovery Links</h2>
+      <ul>
+        <li><a href="https://www.jftna.org/jft" target="_blank">Just For Today</a></li>
+        <li><a href="https://www.spadna.org/" target="_blank">Spiritual Principle a Day</a></li>
+        <li><a href="https://www.aa.org/daily-reflections" target="_blank">Daily Reflections</a></li>
+        <li><a href="https://virtual-na.org/" target="_blank">Virtual NA</a></li>
+        <li><a href="https://aa-intergroup.org/meetings/" target="_blank">Virtual AA</a></li>
+      </ul>
+    </div>
+    <a href="history.html" class="history-link">View History</a>
     
-
-<h2>Recovery Links</h2>
-<div class="recovery-links">
-    <button onclick="window.open('https://www.jftna.org/jft', '_blank')">Just For Today</button>
-    <button onclick="window.open('https://www.spadna.org/', '_blank')">Spiritual Principle a Day</button>
-    <button onclick="window.open('https://www.aa.org/daily-reflections', '_blank')">Daily Reflections</button>
-    <button onclick="window.open('https://virtual-na.org/', '_blank')">Virtual NA</button>
-    <button onclick="window.open('https://aa-intergroup.org/meetings/', '_blank')">Virtual AA</button>
-</div>
-</div>
-<script src="script.js"></script>
+  </div>
 </body>
+<script src="script.js"></script>
 </html>
