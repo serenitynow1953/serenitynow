@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Serenity Now – Archives</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Past Entries</h1>
+    <ul id="history-list"></ul>
+    <button onclick="exportAll()">Export All as PDF</button>
+    <a href="index.html" class="history-link">Back to Inventory</a>
+</div>
+<script>
+function loadHistory() {
+    const historyList = document.getElementById("history-list");
+    historyList.innerHTML = "";
+    Object.keys(localStorage).sort().forEach(key => {
+        const li = document.createElement("li");
+        li.innerText = key;
+        li.onclick = () => {
+            const entry = JSON.parse(localStorage.getItem(key));
+            alert(entry.answers.map((a, i) => (i+1) + '. ' + a).join('\n\n'));
+        };
+        historyList.appendChild(li);
+    });
+}
+
+function exportAll() {
+    let content = "";
+    const questions = [...Array(35).keys()].map(i => (i+1) + ".");
+    Object.keys(localStorage).sort().forEach(date => {
+        const entry = JSON.parse(localStorage.getItem(date));
+        content += `Date: ${date}\n\n`;
+        entry.answers.forEach((a, i) => {
+            content += `${questions[i]}\n${a}\n\n`;
+        });
+        content += "---------------------------------------\n\n";
+    });
+    const blob = new Blob([content], { type: "application/pdf" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "All_Daily_Inventory_Entries.txt";
+    a.click();
+    URL.revokeObjectURL(a.href);
+}
+
+loadHistory();
+</script>
+</body>
+</html>
