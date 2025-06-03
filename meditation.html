@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meditation Timer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  
+
+
+
+
+<style>
+  body {
+    font-family: sans-serif;
+    text-align: center;
+    padding: 30px;
+    background-color: #002b55;
+    color: white;
+  }
+  .timer-display {
+    font-size: 48px;
+    margin: 20px 0;
+  }
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 300px;
+    margin: 20px auto;
+  }
+  .btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    border: none;
+    background-color: #0074D9;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .custom-input-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .custom-input-row input {
+    width: 80px;
+    padding: 8px;
+    font-size: 14px;
+  }
+  .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+</style>
+
+
+
+
+
+</head>
+<body>
+  <h1>Meditation Timer</h1>
+  
+    
+
+
+
+<div class="button-grid">
+  <button class="btn" onclick="setTime(5)">5 min</button>
+  <button class="btn" onclick="setTime(10)">10 min</button>
+  <button class="btn" onclick="setTime(15)">15 min</button>
+  <button class="btn" onclick="setTime(20)">20 min</button>
+  <button class="btn" onclick="setTime(25)">25 min</button>
+  <button class="btn" onclick="setTime(30)">30 min</button>
+</div>
+<div class="custom-input-row">
+  <input type="number" id="customTime" placeholder="Minutes" min="1">
+  <button class="btn" onclick="setCustomTime()">Set</button>
+</div>
+
+<div class="timer-display" id="timer-display">00:00</div>
+  
+<div class="controls">
+  <button class="btn" onclick="startTimer()">Start</button>
+  <button class="btn" onclick="pauseTimer()">Pause</button>
+  <button class="btn" onclick="resumeTimer()">Resume</button>
+  <button class="btn" onclick="resetTimer()">Reset</button>
+</div>
+
+  <audio id="meditation-sound" src="meditationbell.mp3" preload="auto"></audio>
+  <script>
+    let totalSeconds = 0;
+    let remainingSeconds = 0;
+    let timer = null;
+
+    function updateDisplay() {
+      const minutes = String(Math.floor(remainingSeconds / 60)).padStart(2, '0');
+      const seconds = String(remainingSeconds % 60).padStart(2, '0');
+      document.getElementById('timer-display').innerText = `${minutes}:${seconds}`;
+    }
+
+    function setTime(minutes) {
+      clearInterval(timer);
+      totalSeconds = minutes * 60;
+      remainingSeconds = totalSeconds;
+      updateDisplay();
+    }
+
+    function setCustomTime() {
+      const minutes = parseInt(document.getElementById('customTime').value);
+      if (!isNaN(minutes) && minutes > 0) {
+        setTime(minutes);
+      }
+    }
+
+    function startTimer() {
+      document.getElementById("meditation-sound").play();
+      if (remainingSeconds <= 0) return;
+      clearInterval(timer);
+      timer = setInterval(() => {
+        remainingSeconds--;
+        updateDisplay();
+        if (remainingSeconds <= 0) {
+          clearInterval(timer);
+          document.getElementById("meditation-sound").play();
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(timer);
+    }
+
+    function resumeTimer() {
+      if (remainingSeconds <= 0) return;
+      clearInterval(timer);
+      timer = setInterval(() => {
+        remainingSeconds--;
+        updateDisplay();
+        if (remainingSeconds <= 0) {
+          clearInterval(timer);
+          document.getElementById("meditation-sound").play();
+        }
+      }, 1000);
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      remainingSeconds = totalSeconds;
+      updateDisplay();
+    }
+
+    // Initialize with 5 minutes
+    setTime(5);
+  </script>
+</body>
+</html>

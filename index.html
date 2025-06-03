@@ -12,9 +12,11 @@
     <img src="serenity_bird_white_transparent.png" alt="Serenity Logo" class="logo" />
     <h1>Daily Inventory</h1>
     <div class="question-box">
+    <div class="progress-bar"><div id="progress"></div></div>
       <p id="question-text"></p>
       <textarea id="answer" placeholder="Your response..."></textarea>
-      <div class="progress-bar"><div id="progress"></div></div>
+</div>
+      </div>
       <button id="next">Next</button>
       <button id="submit" style="display:none;">Submit</button>
     
@@ -32,6 +34,16 @@
     <a href="history.html" class="history-link">View History</a>
     
   </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="meditation.html"><button id="meditate-button">🧘 Meditate</button></a>
+    </div>
+    <div id="meditation-modal" style="display:none; text-align: center; padding: 20px;">
+        <p>Meditation Timer: <span id="timer-display">05:00</span></p>
+        <button onclick="startMeditation()">Start</button>
+        <button onclick="stopMeditation()">Stop</button>
+    </div>
+    
 </body>
 <script src="script.js"></script>
 </html>
