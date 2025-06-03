@@ -80,3 +80,25 @@ li:hover {
     color: #00ccff;
     text-decoration: underline;
 }
+
+.recovery-links a {
+  color: white;
+  text-decoration: underline;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  margin: 8px 0;
+}
+
+
+.progress-bar {
+  width: 100%;
+  background-color: #ccc;
+  height: 10px;
+  margin-bottom: 10px;
+}
+#progress {
+  height: 100%;
+  width: 0%;
+  background-color: #0074D9;
+}
