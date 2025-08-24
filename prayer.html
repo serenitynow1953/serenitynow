@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daily Prayers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .prayer-list { max-width: 640px; margin: 0 auto; padding: 24px; }
+    .grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+    .card { background:#002b55; padding:16px; border-radius:10px; }
+    .card a { color:#00ccff; text-decoration:none; font-size:18px; display:block; }
+    .card a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div class="prayer-list">
+    <h2>🙏 Daily Prayer</h2>
+    <div class="grid">
+      <div class="card"><a href="prayers/morning.html">🌅 Morning Prayers</a></div>
+      <div class="card"><a href="prayers/evening.html">🌆 Evening Prayers</a></div>
+    </div>
+    <div style="text-align:center; margin-top: 20px;">
+      <a href="index.html" class="history-link">⬅ Back to Inventory</a>
+    </div>
+  </div>
+</body>
+</html>
