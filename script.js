@@ -1,6 +1,6 @@
 const questions = [
     "Did I pray or meditate today?",
-    "Did I read any recovery literature today?" 
+    "Did I read any recovery literature today?", 
     "Did I go to a meeting or talk to another person in recovery?",
     "What defects of character did I act on today? (Such as selfishness, fear, pride, anger, greed, gluttony, envy, lust, sloth, negative thinking, self-pity, criticising, controlling, intolerance, unkindness, etc.)",
     "What spiritual principles did I practice today? (Such as honesty, hope, faith, courage, integrity, willingness, humility, brotherly love, discipline, perserverance, awareness of God, service, positive thinking, compassion, etc.)",
