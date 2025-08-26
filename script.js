@@ -3,7 +3,7 @@ const questions = [
     "Did I read recovery literature today?",
     "Did I go to a meeting or talk to another person in recovery?",
     "What defects of character did I act on today? (Such as selfishness, fear, pride, anger, greed, gluttony, envy, lust, sloth, negative thinking, self-pity, criticizing, controlling, intolerance, unkindness, etc.)",
-    "What spiritual principles did I practice today? (Such as honesty, hope, faith, courage, integrity, willingness, humility, brotherly love, discipline, perserverance, awareness of God, service, positive thinking, compassion, etc.)",
+    "What spiritual principles did I practice today? (Such as honesty, hope, faith, courage, integrity, willingness, humility, brotherly love, discipline, perserverance, spiritual awareness, service, positive thinking, compassion, etc.)",
     "Have I been kind and loving toward all, or was I just thinking of myself?",
     "Did I become obsessed with anything or feel overpowering emotions?",
     "Do I owe any apologies or amends?",
