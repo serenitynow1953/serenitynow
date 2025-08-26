@@ -1,11 +1,12 @@
 const questions = [
     "Did I pray or meditate today?",
+    "Did I read recovery literature today?",
+    "Did I go to a meeting or talk to another person in recovery?",
     "What defects of character did I act on today? (Such as selfishness, fear, pride, anger, greed, gluttony, envy, lust, sloth, negative thinking, self-pity, criticizing, controlling, intolerance, unkindness, etc.)",
     "What spiritual principles did I practice today? (Such as honesty, hope, faith, courage, integrity, willingness, humility, brotherly love, discipline, perserverance, awareness of God, service, positive thinking, compassion, etc.)",
     "Have I been kind and loving toward all, or was I just thinking of myself?",
     "Did I become obsessed with anything or feel overpowering emotions?",
     "Do I owe any apologies or amends?",
-    "Did I go to a meeting or talk to another person in recovery?",
     "Have I kept something to myself that should be shared?",
     "Did I stay focused on today, or did I worry about the past or future?",
     "What do I have to be grateful for today? (Including things I did well.)",
