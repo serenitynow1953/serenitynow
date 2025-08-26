@@ -1,7 +1,7 @@
 const questions = [
     "Did I pray or meditate today?",
-    "What defects of character did I act on today? (Such as selfishness, anger, fear, lust, greed, etc.)",
-    "What spiritual principles did I practice today? (Such as humility, patience, faith, willingness, generosity etc.)",
+    "What defects of character did I act on today? (Such as selfishness, fear, pride, anger, greed, gluttony, envy, lust, sloth, negative thinking, self-pity, criticiing, controlling, intolerance, unkindness, etc.)",
+    "What spiritual principles did I practice today? (Such as honesty, hope, faith, courage, integrity, willingness, humility, brotherly love, discipline, perserverance, awareness of God, service, positive thinking, compassion, etc.)",
     "Have I been kind and loving toward all, or was I just thinking of myself?",
     "Did I become obsessed with anything or feel overpowering emotions?",
     "Do I owe any apologies or amends?",
